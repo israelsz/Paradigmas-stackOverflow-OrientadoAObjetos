@@ -60,5 +60,18 @@ public class Usuario {
     public void setRespuestasRealizadas(ArrayList<Respuesta> respuestasRealizadas) {
         this.respuestasRealizadas = respuestasRealizadas;
     }
+    //Metodos
+
+    public void agregarPregunta(Pregunta pregunta){
+        ArrayList<Pregunta> listaPreguntas = getPreguntasRealizadas();
+        listaPreguntas.add(pregunta);
+        setPreguntasRealizadas(listaPreguntas);
+    }
+
+    public void agregarRespuesta(Respuesta respuesta){
+        ArrayList<Respuesta> listaRespuestas = getRespuestasRealizadas();
+        listaRespuestas.add(respuesta);
+        setRespuestasRealizadas(listaRespuestas);
+    }
 
 }

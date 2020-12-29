@@ -66,6 +66,10 @@ public class Pregunta {
         return recompensa;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     //Setters
     public void setRespuestas(ArrayList<Respuesta> respuestas) {
         this.respuestas = respuestas;
@@ -98,5 +102,18 @@ public class Pregunta {
     public void setRecompensa(Integer recompensa) {
         this.recompensa = recompensa;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    //Metodos:
+    public void agregarRespuesta(Respuesta respuesta){
+        ArrayList<Respuesta> listaRespuestasAPregunta = getRespuestas();
+        listaRespuestasAPregunta.add(respuesta);
+        setRespuestas(listaRespuestasAPregunta);
+    }
+
+
 
 }
