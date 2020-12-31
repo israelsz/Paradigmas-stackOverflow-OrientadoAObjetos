@@ -42,9 +42,21 @@ public class Menu {
                     switch (opcion){
                         case 1:
                             System.out.println("Eligió conectarse a su cuenta");
+                            System.out.println("Ingrese su nombre de usuario:");
+                            input.nextLine();
+                            username = input.nextLine();
+                            System.out.println("Ingrese su contraseña:");
+                            password = input.nextLine();
+                            controlador.login(username,password);
                             break;
                         case 2:
                             System.out.println("Eligió registrar una nueva cuenta");
+                            System.out.println("Ingrese su nombre de usuario: ");
+                            input.nextLine();
+                            username = input.nextLine();
+                            System.out.println("Ingrese su contraseña:");
+                            password = input.nextLine();
+                            controlador.register(username,password);
                             break;
                         case 3:
                             System.out.println("Elegiste salir del programa");
@@ -66,8 +78,8 @@ public class Menu {
                 System.out.println("2. Responder pregunta");
                 System.out.println("3. Dar recompensa");
                 System.out.println("4. Aceptar respuesta");
-                System.out.println("5. Cerrar sesión");
-                System.out.println("6. Votar a una pregunta o respuesta");
+                System.out.println("5. Votar a una pregunta o respuesta");
+                System.out.println("6. Cerrar sesión");
                 System.out.println("7. Salir del programa");
 
                 try {
@@ -87,12 +99,12 @@ public class Menu {
                             System.out.println("Elegiste la opcion 4 del menu 2");
                             break;
                         case 5:
+                            System.out.println("Elegiste votar por una pregunta o respuesta");
+                            break;
+                        case 6:
                             System.out.println("Sesion cerrada.");
                             //Logout
                             controlador.logOut();
-                            break;
-                        case 6:
-                            System.out.println("Elegiste votar por una pregunta o respuesta");
                             break;
                         case 7:
                             System.out.println("Elegiste salir del programa");
