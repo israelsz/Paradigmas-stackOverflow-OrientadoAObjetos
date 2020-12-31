@@ -6,22 +6,30 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
+    //Atributos
+    //Como atributo el menu tendra al controlador, para poder acceder a sus metodos
+    private Controlador controller;
 
     //Constructor
-    public Menu() {
-
+    public Menu(Controlador controller){
+        this.controller = controller;
     }
 
-    //Metodo
-    public void mostrarMenu(){
+    //Getter
+    public Controlador getController() {
+        return controller;
+    }
+
+    //Metodos
+    public void iniciarMenu(){
         Scanner input = new Scanner(System.in);
         boolean salirMenu = false;
         int opcion;
         String username;
         String password;
-
+        Controlador controlador = getController();
         while(!salirMenu){
-            if(!stack.usuarioConectado){
+            if(!controlador.isUsuarioConectado()){
                 System.out.println("### Sistema de foro StackOverflow ###");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. Conectarse a su cuenta");
@@ -52,7 +60,7 @@ public class Menu {
                 }
             } else {
                 System.out.println("### Sistema de foro StackOverflow ###");
-                System.out.println("## Registrado como: "+ stack.usuarioConectado.username + " ##");
+                System.out.println("## Registrado como: "+ controlador.usernameUsuarioConectado() + " ##");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. Agregar nueva pregunta");
                 System.out.println("2. Responder pregunta");
@@ -81,7 +89,7 @@ public class Menu {
                         case 5:
                             System.out.println("Sesion cerrada.");
                             //Logout
-                            stack.conectado = false;
+                            controlador.logOut();
                             break;
                         case 6:
                             System.out.println("Elegiste votar por una pregunta o respuesta");
@@ -102,6 +110,5 @@ public class Menu {
 
         }
     }
-
 
 }

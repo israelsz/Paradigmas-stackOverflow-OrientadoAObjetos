@@ -7,54 +7,36 @@ import StackOverflow_View.Menu;
 public class Controlador {
     //Atributos
 
-    //El controlador tendra como atributos la vista y  las clases del modelo:
-    //Vista
-    private Menu menu;
+    //El controlador tendra como atributos las clases del modelo:
+
     //Modelo
-    private Etiqueta etiqueta;
-    private Pregunta pregunta;
-    private Respuesta respuesta;
     private Stack stack;
-    private Usuario usuario;
 
     //Constructor
-    public Controlador(Menu menu, Etiqueta etiqueta, Pregunta pregunta, Respuesta respuesta, Stack stack, Usuario usuario) {
-        this.menu = menu;
-        this.etiqueta = etiqueta;
-        this.pregunta = pregunta;
-        this.respuesta = respuesta;
+    public Controlador(Stack stack) {
         this.stack = stack;
-        this.usuario = usuario;
     }
 
-    //Getters
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public Etiqueta getEtiqueta() {
-        return etiqueta;
-    }
-
-    public Pregunta getPregunta() {
-        return pregunta;
-    }
-
-    public Respuesta getRespuesta() {
-        return respuesta;
-    }
-
+    //Getter
     public Stack getStack() {
         return stack;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    //Metodos
+    public boolean isUsuarioConectado(){
+        Stack stackActual = getStack();
+        return stackActual.isConectado();
     }
 
-    //Metodos
-    public boolean getIsConectado(){
-        boolean conectado = getStack().isConectado();
-        return conectado;
+    public String usernameUsuarioConectado(){
+        Stack stackActual = getStack();
+        return stackActual.getUsuarioConectado().getUsername();
     }
+
+    //Logout:
+    public void logOut(){
+        Stack stackActual = getStack();
+        stackActual.setConectado(false);
+    }
+
 }
