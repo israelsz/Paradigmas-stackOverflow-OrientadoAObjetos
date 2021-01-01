@@ -1,7 +1,9 @@
 package StackOverflow_View;
 
 import StackOverflow_Controller.Controlador;
+import StackOverflow_Model.Etiqueta;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -88,6 +90,27 @@ public class Menu {
                     switch (opcion){
                         case 1:
                             System.out.println("Elegió hacer una pregunta:");
+                            System.out.println("Ingrese el título de su pregunta:");
+                            input.nextLine();
+                            String titulo = input.nextLine();
+                            System.out.println("Ingrese el contenido de su pregunta:");
+                            String contenido = input.nextLine();
+                            System.out.println("Ingrese la cantidad de etiquetas que tendra la pregunta:");
+                            int cantidadEtiquetas = input.nextInt();
+                            input.nextLine();
+                            ArrayList<Etiqueta> listaEtiquetas = new ArrayList<>();
+                            //A continuacion se pide que el usuario ingrese la informacion de las etiquetas:
+                            for(int i = 1;i<=cantidadEtiquetas;i++){
+                                System.out.println("Ingrese el nombre de la etiqueta " + i +" :");
+                                String nombreEtiqueta = input.nextLine();
+                                System.out.println("Ingrese la descripción de la etiqueta " + i +" :");
+                                String descripcionEtiqueta = input.nextLine();
+                                Etiqueta etiqueta = new Etiqueta(nombreEtiqueta,descripcionEtiqueta);
+                                listaEtiquetas.add(etiqueta);
+                            }
+                            //Se llama a ask:
+                            controlador.ask(titulo,contenido,listaEtiquetas);
+                            controlador.printStack();
                             break;
                         case 2:
                             System.out.println("Elegió responder una pregunta: ");

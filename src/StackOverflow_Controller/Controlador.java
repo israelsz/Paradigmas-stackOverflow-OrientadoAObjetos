@@ -2,6 +2,7 @@ package StackOverflow_Controller;
 
 import StackOverflow_Model.*;
 
+import java.util.ArrayList;
 
 
 public class Controlador {
@@ -73,4 +74,17 @@ public class Controlador {
         stackActual.setConectado(false);
     }
 
+    //Ask:
+    public void ask(String titulo, String contenido, ArrayList<Etiqueta> etiquetas){
+        Stack stack = getStack();
+        //Se crea la pregunta
+        Pregunta pregunta = new Pregunta(titulo,contenido,etiquetas);
+        //Se consigue al autor y se le agrega a la pregunta
+        pregunta.setAutor(stack.getUsuarioConectado());
+        //Se agrega la pregunta creada al usuario
+        stack.getUsuarioConectado().getPreguntasRealizadas().add(pregunta);
+        //Se agrega la pregunta al stack
+        stack.getPreguntas().add(pregunta);
+        System.out.println("Pregunta agregada!");
+    }
 }
