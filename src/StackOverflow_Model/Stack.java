@@ -3,26 +3,32 @@ package StackOverflow_Model;
 import java.util.ArrayList;
 
 public class Stack {
+
     //Atributos
     private ArrayList<Pregunta> preguntas;
     private ArrayList<Usuario> usuarios;
     private Usuario usuarioConectado;
     private boolean conectado = false;
+    private ArrayList<Etiqueta> etiquetas;
 
 
     //Constructor
     public Stack() {
         this.preguntas = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        this.etiquetas = new ArrayList<>();
 
         Etiqueta etiqueta1 = new Etiqueta("Python","python es un lenguaje interpretado, multiparadigma que busca favorecer un codigo legible");
         ArrayList<Etiqueta> listaEtiqueta1 = new ArrayList<>();
+        etiquetas.add(etiqueta1);
         listaEtiqueta1.add(etiqueta1);
         Etiqueta etiqueta2 = new Etiqueta("C","C es un lenguaje de alto rendimiento de proposito general fuertemente tipado");
         ArrayList<Etiqueta> listaEtiqueta2 = new ArrayList<>();
+        etiquetas.add(etiqueta2);
         listaEtiqueta2.add(etiqueta2);
         Etiqueta etiqueta3 = new Etiqueta("Java","Java es un lenguaje de programacion de proposito general, que soporta la orientacion a objetos");
         ArrayList<Etiqueta> listaEtiqueta3 = new ArrayList<>();
+        etiquetas.add(etiqueta3);
         listaEtiqueta3.add(etiqueta3);
 
         Pregunta pregunta1 = new Pregunta("Como hacer hola mundo en python",
@@ -177,6 +183,10 @@ public class Stack {
 
     public boolean isConectado() {
         return conectado;
+    }
+
+    public ArrayList<Etiqueta> getEtiquetas() {
+        return etiquetas;
     }
 
     //Setters

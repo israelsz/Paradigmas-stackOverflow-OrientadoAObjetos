@@ -42,7 +42,7 @@ public class Menu {
                     System.out.println("Introduzca su opción: ");
                     opcion = input.nextInt();
                     switch (opcion){
-                        case 1:
+                        case 1: //Conectarse a su cuenta
                             System.out.println("Eligió conectarse a su cuenta");
                             System.out.println("Ingrese su nombre de usuario:");
                             input.nextLine();
@@ -51,7 +51,7 @@ public class Menu {
                             password = input.nextLine();
                             controlador.login(username,password);
                             break;
-                        case 2:
+                        case 2: //Registrar una nueva cuenta
                             System.out.println("Eligió registrar una nueva cuenta");
                             System.out.println("Ingrese su nombre de usuario: ");
                             input.nextLine();
@@ -60,7 +60,7 @@ public class Menu {
                             password = input.nextLine();
                             controlador.register(username,password);
                             break;
-                        case 3:
+                        case 3: //Salir del programa
                             System.out.println("Elegiste salir del programa");
                             salirMenu = true;
                             break;
@@ -88,29 +88,17 @@ public class Menu {
                     System.out.println("Introduzca su opción: ");
                     opcion = input.nextInt();
                     switch (opcion){
-                        case 1:
+                        case 1: //Agregar nueva pregunta
                             System.out.println("Elegió hacer una pregunta:");
                             System.out.println("Ingrese el título de su pregunta:");
                             input.nextLine();
                             String titulo = input.nextLine();
                             System.out.println("Ingrese el contenido de su pregunta:");
                             String contenido = input.nextLine();
-                            System.out.println("Ingrese la cantidad de etiquetas que tendra la pregunta:");
-                            int cantidadEtiquetas = input.nextInt();
-                            input.nextLine();
-                            ArrayList<Etiqueta> listaEtiquetas = new ArrayList<>();
-                            //A continuacion se pide que el usuario ingrese la informacion de las etiquetas:
-                            for(int i = 1;i<=cantidadEtiquetas;i++){
-                                System.out.println("Ingrese el nombre de la etiqueta " + i +" :");
-                                String nombreEtiqueta = input.nextLine();
-                                System.out.println("Ingrese la descripción de la etiqueta " + i +" :");
-                                String descripcionEtiqueta = input.nextLine();
-                                Etiqueta etiqueta = new Etiqueta(nombreEtiqueta,descripcionEtiqueta);
-                                listaEtiquetas.add(etiqueta);
-                            }
+                            //Se llama al metodo para crear las etiquetas que tendra la pregunta
+                            ArrayList<Etiqueta> listaEtiquetas = controlador.elegirEtiquetas();
                             //Se llama a ask:
                             controlador.ask(titulo,contenido,listaEtiquetas);
-                            controlador.printStack();
                             break;
                         case 2:
                             System.out.println("Elegió responder una pregunta: ");
@@ -142,8 +130,6 @@ public class Menu {
                     input.next();
                 }
             }
-
         }
     }
-
 }

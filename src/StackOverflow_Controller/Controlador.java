@@ -3,6 +3,8 @@ package StackOverflow_Controller;
 import StackOverflow_Model.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 
 public class Controlador {
@@ -72,6 +74,76 @@ public class Controlador {
     public void logOut(){
         Stack stackActual = getStack();
         stackActual.setConectado(false);
+    }
+
+    // elegir etiquetas para una pregunta
+    public ArrayList<Etiqueta> elegirEtiquetas(){
+        int opcion;
+        int cantidadEtiquetas;
+        int idEtiqueta;
+        boolean salirMenu = false;
+        ArrayList<Etiqueta> listaEtiquetas = null;
+        Scanner input = new Scanner(System.in);
+        Stack stack = getStack();
+        System.out.println("Las etiquetas existentes en el stack son las siguientes: ");
+        ArrayList<Etiqueta> etiquetasStack = stack.getEtiquetas();
+        for(int i = 1; i<= etiquetasStack.size(); i++){
+            System.out.println("Id etiqueta: "+ i + ".");
+            System.out.println("Nombre Etiqueta: " + etiquetasStack.get(i-1).getNombreEtiqueta());
+            System.out.println("Descripcion Etiqueta: ");
+            System.out.println(etiquetasStack.get(i-1).getDescripcionEtiqueta());
+            System.out.print("\n");
+        }
+
+        try {
+            System.out.println("¿Desea elegir etiquetas ya creadas o desea crear nuevas etiquetas para la pregunta?");
+            System.out.println("1. Elegir etiquetas ya creadas");
+            System.out.println("2. Crear nuevas etiquetas");
+            System.out.println("Introduzca su opción: ");
+            opcion = input.nextInt();
+            switch (opcion){
+                case 1: //Elegir etiquetas ya creadas
+                    System.out.println("Eligió escoger etiquetas ya existentes");
+                    System.out.println("¿Cuantas etiquetas tendra la pregunta? ");
+                    cantidadEtiquetas = input.nextInt();
+                    listaEtiquetas = new ArrayList<>();
+                    for (int i = 1; i <= cantidadEtiquetas; i++){
+                        System.out.println("Ingrese el id de la etiqueta del menu presentado anteriormente: " + i);
+                        idEtiqueta = input.nextInt();
+                        listaEtiquetas.add(etiquetasStack.get(i-1));
+                    }
+                    System.out.println("Etiquetas agregadas");
+                    return listaEtiquetas;
+                case 2: //Crear nuevas etiquetas
+                    System.out.println("Eligió crear nuevas etiquetas");
+                    System.out.println("¿Cuantas etiquetas tendra la pregunta? ");
+                    cantidadEtiquetas = input.nextInt();
+                    input.nextLine();
+                    listaEtiquetas = new ArrayList<>();
+                    //A continuacion se pide que el usuario ingrese la informacion de las etiquetas:
+                    for(int i = 1;i<=cantidadEtiquetas;i++){
+                        System.out.println("Ingrese el nombre de la etiqueta " + i +" :");
+                        String nombreEtiqueta = input.nextLine();
+                        System.out.println("Ingrese la descripción de la etiqueta " + i +" :");
+                        String descripcionEtiqueta = input.nextLine();
+                        //Se crea la etiqueta
+                        Etiqueta etiqueta = new Etiqueta(nombreEtiqueta,descripcionEtiqueta);
+                        //Se agrega la etiqueta a la lista de etiquetas
+                        listaEtiquetas.add(etiqueta);
+                        //Se agrega la etiqueta a la lista de etiquetas del stack
+                        stack.getEtiquetas().add(etiqueta);
+                    }
+                    System.out.println("Etiquetas agregadas");
+                    return listaEtiquetas;
+                default:
+                    System.out.println("Debe seleccionar una de las opciones presentadas !");
+                    break;
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Solo puede ingresar números");
+            input.next();
+        }
+        return listaEtiquetas;
     }
 
     //Ask:
