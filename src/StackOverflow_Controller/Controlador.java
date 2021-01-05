@@ -159,4 +159,47 @@ public class Controlador {
         stack.getPreguntas().add(pregunta);
         System.out.println("Pregunta agregada!");
     }
+
+    //Elegir pregunta del stack
+    public Pregunta elegirPregunta(){
+        Stack stack = getStack();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Las preguntas disponibles en el stack son: ");
+        for(int i = 0; i < stack.getPreguntas().size();i++) {
+            System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
+            System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
+            System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername() + "\n");
+        }
+        System.out.println("Ingrese el id de la pregunta a la que desea responder:");
+        Integer idPregunta = input.nextInt();
+        Pregunta preguntaElegida = null;
+        //Se busca la pregunta que se eligio
+        while (true){
+            for(int i=0;i<stack.getPreguntas().size();i++){
+                if(stack.getPreguntas().get(i).getId().equals(idPregunta)){
+                    preguntaElegida = stack.getPreguntas().get(i);
+                    return preguntaElegida;
+                }
+            }
+
+            //Si se termina el ciclo for sin encontrar la pregunta para el id ingresado:
+            System.out.println("No se encontro el id de pregunta ingresado");
+            System.out.println("Ingrese el id de la pregunta a la que desea responder:");
+            idPregunta = input.nextInt();
+        }
+    }
+
+    //Answer:
+    public void answer(Pregunta preguntaAResponder, String contenido){
+        Stack stack = getStack();
+        //Se crea la respuesta
+        Respuesta respuesta = new Respuesta(contenido);
+        //Se consigue al autor de la respuesta y se le agrega a la respuesta
+        respuesta.setAutor(stack.getUsuarioConectado());
+        //Se agrega la respuesta creada al usuario
+        stack.getUsuarioConectado().getRespuestasRealizadas().add(respuesta);
+        //Se agrega la respuesta a la pregunta:
+        preguntaAResponder.getRespuestas().add(respuesta);
+        System.out.println("Respuesta agregada!");
+    }
 }

@@ -2,6 +2,7 @@ package StackOverflow_View;
 
 import StackOverflow_Controller.Controlador;
 import StackOverflow_Model.Etiqueta;
+import StackOverflow_Model.Pregunta;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -102,6 +103,12 @@ public class Menu {
                             break;
                         case 2:
                             System.out.println("Elegió responder una pregunta: ");
+                            Pregunta preguntaElegida = controlador.elegirPregunta();
+                            System.out.println("Ingrese el contenido de la respuesta:");
+                            input.nextLine();
+                            String contenidoRespuesta = input.nextLine();
+                            //Se llama al metodo Answer
+                            controlador.answer(preguntaElegida,contenidoRespuesta);
                             break;
                         case 3:
                             System.out.println("Elegiste la opcion 3 del menu 2");
