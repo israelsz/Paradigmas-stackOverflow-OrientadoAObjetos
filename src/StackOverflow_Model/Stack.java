@@ -218,7 +218,7 @@ public class Stack {
         for(int i = 0; i < listaPreguntas.size();i++) {
             System.out.println("Pregunta: " + listaPreguntas.get(i).getTitulo() + " Id: " + listaPreguntas.get(i).getId());
             System.out.println("Contenido: " + listaPreguntas.get(i).getContenido());
-            System.out.println("Fecha :" + listaPreguntas.get(i).getFecha() + " Estado: " + listaPreguntas.get(i).getEstado() + " Autor: " + listaPreguntas.get(i).getAutor().getUsername());
+            System.out.println("Fecha :" + listaPreguntas.get(i).getFecha() + " Estado: " + listaPreguntas.get(i).getEstado() + " Autor: " + listaPreguntas.get(i).getAutor().getUsername() + " Recompensa: " + listaPreguntas.get(i).getRecompensa());
             for (int j = 0; j < listaPreguntas.get(i).getEtiquetas().size(); j++) {
                 System.out.println("Etiquetas: " + listaPreguntas.get(i).getEtiquetas().get(j).getNombreEtiqueta());
             }

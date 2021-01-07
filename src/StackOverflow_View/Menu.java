@@ -75,7 +75,7 @@ public class Menu {
                 }
             } else {
                 System.out.println("### Sistema de foro StackOverflow ###");
-                System.out.println("## Registrado como: "+ controlador.usernameUsuarioConectado() + " ##");
+                System.out.println("## Registrado como: "+ controlador.usuarioConectado().getUsername() + " ##");
                 System.out.println("Escoja la opción que desea realizar: ");
                 System.out.println("1. Agregar nueva pregunta");
                 System.out.println("2. Responder pregunta");
@@ -111,7 +111,18 @@ public class Menu {
                             controlador.answer(preguntaElegida,contenidoRespuesta);
                             break;
                         case 3:
-                            System.out.println("Elegiste la opcion 3 del menu 2");
+                            System.out.println("Elegió dar una recompensa");
+                            preguntaElegida = controlador.elegirPregunta();
+                            System.out.println("Usted tiene " + controlador.usuarioConectado().getReputacion() +" de recompensa");
+                            System.out.println("¿Cuanta recompensa desea ofrecer a la pregunta?");
+                            Integer recompensaOfrecida = input.nextInt();
+                            if(recompensaOfrecida > controlador.usuarioConectado().getReputacion()){
+                                System.out.println("No puede dar más recompensa de la que usted tiene !");
+                                break;
+                            }
+                            //Se llama a reward
+                            controlador.reward(preguntaElegida,recompensaOfrecida);
+                            controlador.printStack();
                             break;
                         case 4:
                             System.out.println("Elegiste la opcion 4 del menu 2");

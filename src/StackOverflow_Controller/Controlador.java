@@ -35,9 +35,9 @@ public class Controlador {
         return stackActual.isConectado();
     }
 
-    public String usernameUsuarioConectado(){
+    public Usuario usuarioConectado(){
         Stack stackActual = getStack();
-        return stackActual.getUsuarioConectado().getUsername();
+        return stackActual.getUsuarioConectado();
     }
 
     //Login:
@@ -168,9 +168,10 @@ public class Controlador {
         for(int i = 0; i < stack.getPreguntas().size();i++) {
             System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
             System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
-            System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername() + "\n");
+            System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
+            System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "\n");
         }
-        System.out.println("Ingrese el id de la pregunta a la que desea responder:");
+        System.out.println("Ingrese el id de la pregunta que desea escoger:");
         Integer idPregunta = input.nextInt();
         Pregunta preguntaElegida = null;
         //Se busca la pregunta que se eligio
@@ -184,7 +185,7 @@ public class Controlador {
 
             //Si se termina el ciclo for sin encontrar la pregunta para el id ingresado:
             System.out.println("No se encontro el id de pregunta ingresado");
-            System.out.println("Ingrese el id de la pregunta a la que desea responder:");
+            System.out.println("Ingrese el id de la pregunta que desea escoger:");
             idPregunta = input.nextInt();
         }
     }
@@ -202,4 +203,20 @@ public class Controlador {
         preguntaAResponder.getRespuestas().add(respuesta);
         System.out.println("Respuesta agregada!");
     }
+    //Reward
+    public void reward(Pregunta preguntaARecompensar, Integer recompensa){
+        Stack stack = getStack();
+        //Se consigue la recompensa de la pregunta
+        Integer recompensaActual = preguntaARecompensar.getRecompensa();
+        //Se suma la recompensa ofrecida por el usuario
+        Integer nuevaRecompensa = recompensaActual + recompensa;
+        //Se agrega la recompensa a la pregunta
+        preguntaARecompensar.setRecompensa(nuevaRecompensa);
+        //Ahora se descuenta la recompensa ofrecida por el usuario
+        Integer reputacionUsuario = stack.getUsuarioConectado().getReputacion();
+        reputacionUsuario = reputacionUsuario - recompensa;
+        //Se descuenta la recompensa fijando la recompensa ya restada
+        stack.getUsuarioConectado().setReputacion(reputacionUsuario);
+    }
+
 }

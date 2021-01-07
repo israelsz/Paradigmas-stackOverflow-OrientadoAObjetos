@@ -9,7 +9,7 @@ public class Usuario {
     private String password;
     private ArrayList<Pregunta> preguntasRealizadas;
     private ArrayList<Respuesta> respuestasRealizadas;
-    private int reputacion;
+    private Integer reputacion;
 
     //Constructor
     public Usuario(String username, String password) {
@@ -28,7 +28,7 @@ public class Usuario {
         return password;
     }
 
-    public int getReputacion() {
+    public Integer getReputacion() {
         return reputacion;
     }
 
@@ -49,7 +49,7 @@ public class Usuario {
         this.password = password;
     }
 
-    public void setReputacion(int reputacion) {
+    public void setReputacion(Integer reputacion) {
         this.reputacion = reputacion;
     }
 
