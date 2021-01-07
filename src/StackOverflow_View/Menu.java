@@ -3,6 +3,7 @@ package StackOverflow_View;
 import StackOverflow_Controller.Controlador;
 import StackOverflow_Model.Etiqueta;
 import StackOverflow_Model.Pregunta;
+import StackOverflow_Model.Respuesta;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -122,10 +123,19 @@ public class Menu {
                             }
                             //Se llama a reward
                             controlador.reward(preguntaElegida,recompensaOfrecida);
-                            controlador.printStack();
                             break;
                         case 4:
-                            System.out.println("Elegiste la opcion 4 del menu 2");
+                            System.out.println("Eligió aceptar una respuesta");
+                            Integer cantidadPreguntasUsuario = controlador.mostrarPreguntasYRespuestasDelUsuario();
+                            if(cantidadPreguntasUsuario != 0){
+                                preguntaElegida = controlador.elegirPreguntaAccept();
+                                Respuesta respuestaElegida = controlador.elegirRespuestaAccept(preguntaElegida);
+                                //Se llama a accept
+                                controlador.accept(preguntaElegida,respuestaElegida);
+                                break;
+                            } else {
+                                System.out.println("Usted no tiene preguntas o todas sus preguntas se encuentran cerradas");
+                            }
                             break;
                         case 5:
                             System.out.println("Elegiste votar por una pregunta o respuesta");
