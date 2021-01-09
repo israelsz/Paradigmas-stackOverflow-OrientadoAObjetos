@@ -216,17 +216,17 @@ public class Stack {
         ArrayList<Usuario> listaUsuarios = getUsuarios();
 
         for(int i = 0; i < listaPreguntas.size();i++) {
-            System.out.println("Pregunta: " + listaPreguntas.get(i).getTitulo() + " Id: " + listaPreguntas.get(i).getId());
+            System.out.println("Pregunta: " + listaPreguntas.get(i).getTitulo() + "    Id: " + listaPreguntas.get(i).getId());
             System.out.println("Contenido: " + listaPreguntas.get(i).getContenido());
-            System.out.println("Fecha :" + listaPreguntas.get(i).getFecha() + " Estado: " + listaPreguntas.get(i).getEstado() + " Autor: " + listaPreguntas.get(i).getAutor().getUsername() + " Recompensa: " + listaPreguntas.get(i).getRecompensa());
+            System.out.println("Fecha :" + listaPreguntas.get(i).getFecha() + "    Estado: " + listaPreguntas.get(i).getEstado() + "    Autor: " + listaPreguntas.get(i).getAutor().getUsername() + "    Recompensa: " + listaPreguntas.get(i).getRecompensa() + "   Votos: " + listaPreguntas.get(i).getVotos());
             for (int j = 0; j < listaPreguntas.get(i).getEtiquetas().size(); j++) {
                 System.out.println("Etiquetas: " + listaPreguntas.get(i).getEtiquetas().get(j).getNombreEtiqueta());
             }
             System.out.println("\nRespuestas a la pregunta: ");
             for (int j = 0; j < listaPreguntas.get(i).getRespuestas().size(); j++) {
                 System.out.println("Respuesta: " + listaPreguntas.get(i).getRespuestas().get(j).getContenido());
-                System.out.println(" Id: " + listaPreguntas.get(i).getRespuestas().get(j).getId() + " Fecha: " + listaPreguntas.get(i).getRespuestas().get(j).getFecha());
-                System.out.println(" Autor: " + listaPreguntas.get(i).getRespuestas().get(j).getAutor().getUsername() + " Estado: " + listaPreguntas.get(i).getRespuestas().get(j).getEstado() + "\n");
+                System.out.println(" Id: " + listaPreguntas.get(i).getRespuestas().get(j).getId() + "    Fecha: " + listaPreguntas.get(i).getRespuestas().get(j).getFecha());
+                System.out.println(" Autor: " + listaPreguntas.get(i).getRespuestas().get(j).getAutor().getUsername() + "    Estado: " + listaPreguntas.get(i).getRespuestas().get(j).getEstado() + "    Votos: " + listaPreguntas.get(i).getRespuestas().get(j).getVotos() + "\n");
             }
         }
         System.out.println("\n Usuarios Registrados: ");

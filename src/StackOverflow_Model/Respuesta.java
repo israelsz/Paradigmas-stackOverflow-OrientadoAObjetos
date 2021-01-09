@@ -11,6 +11,7 @@ public class Respuesta {
     private String contenido;
     private String estado;
     private Integer id;
+    private Integer votos;
 
     //Constructor
     public Respuesta(String contenido) {
@@ -22,7 +23,9 @@ public class Respuesta {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         this.fecha = formatoFecha.format(date);
+        this.votos = 0;
     }
+
     //Getters
     public Usuario getAutor() {
         return autor;
@@ -42,6 +45,10 @@ public class Respuesta {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getVotos() {
+        return votos;
     }
 
     //Setters
@@ -64,4 +71,8 @@ public class Respuesta {
     public void setId(Integer id) {
         this.id = id;
     }
+    public void setVotos(Integer votos) {
+        this.votos = votos;
+    }
+
 }

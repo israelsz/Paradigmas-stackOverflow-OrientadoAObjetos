@@ -325,4 +325,139 @@ public class Controlador {
         System.out.println("Pregunta aceptada!");
     }
 
+
+    //Mostrar solo preguntas y respuestas que no sean del usuario
+    public void mostrarPreguntasYRespuestasNoPertenecientesAlUsuario(){
+        Stack stack = getStack();
+        for (int i = 0; i < stack.getPreguntas().size(); i++) {
+            //Si la pregunta NO fue hecha por el usuario actualmente conectado
+            if (!stack.getUsuarioConectado().getUsername().equals(stack.getPreguntas().get(i).getAutor().getUsername())) {
+                System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
+                System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
+                System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
+                System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "\n");
+                for (int j = 0; j < stack.getPreguntas().get(i).getEtiquetas().size(); j++) {
+                    System.out.println("Etiquetas: " + stack.getPreguntas().get(i).getEtiquetas().get(j).getNombreEtiqueta());
+                }
+            } else {
+                System.out.println("Pregunta no mostrada debido a que corresponde a una pregunta del usuario conectado");
+            }
+                System.out.println("\nRespuestas a la pregunta: ");
+                for (int j = 0; j < stack.getPreguntas().get(i).getRespuestas().size(); j++) {
+                    //En caso que el autor de la respuesta no sea el usuario conectado
+                    if(!stack.getUsuarioConectado().getUsername().equals(stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername())){
+                        System.out.println("Respuesta: " + stack.getPreguntas().get(i).getRespuestas().get(j).getContenido());
+                        System.out.println(" Id: " + stack.getPreguntas().get(i).getRespuestas().get(j).getId() + " Fecha: " + stack.getPreguntas().get(i).getRespuestas().get(j).getFecha());
+                        System.out.println(" Autor: " + stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername() + " Estado: " + stack.getPreguntas().get(i).getRespuestas().get(j).getEstado() + "\n");
+                    }
+                }
+        }
+    }
+
+    //elegir pregunta para el método vote
+    public Pregunta elegirPreguntaVote() {
+        Stack stack = getStack();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Ingrese el id de la pregunta que desea escoger:");
+        Integer idPregunta = input.nextInt();
+        Pregunta preguntaElegida = null;
+        //Se busca la pregunta que se eligio
+        while (true) {
+            for (int i = 0; i < stack.getPreguntas().size(); i++) {
+                //Si cumple los requisitos de ser la pregunta buscada, además de NO haber sido realizada por el usuario conectado
+                if (stack.getPreguntas().get(i).getId().equals(idPregunta) && !stack.getPreguntas().get(i).getAutor().getUsername().equals(stack.getUsuarioConectado().getUsername())) {
+                    //Se elige la pregunta y la retorna
+                    preguntaElegida = stack.getPreguntas().get(i);
+                    return preguntaElegida;
+                }
+            }
+            //Si se termina el ciclo for sin encontrar la pregunta para el id ingresado:
+            System.out.println("No se encontro el id de pregunta ingresado o intento escoger una pregunta hecha por usted, intentelo nuevamente");
+            System.out.println("Ingrese el id de la pregunta que desea escoger:");
+            idPregunta = input.nextInt();
+        }
+    }
+
+    //Elegir respuesta para vote
+    public Respuesta elegirRespuestaVote() {
+        Stack stack = getStack();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Ingrese el id de la respuesta que desea aceptar:");
+        Integer idRespuesta = input.nextInt();
+        Respuesta respuestaElegida = null;
+        //Se recorrera cada lista de preguntas de la pregunta elegida con anterioridad
+        while (true) {
+            for (int i = 0; i < stack.getPreguntas().size(); i++) {
+                for (int j = 0; j < stack.getPreguntas().get(i).getRespuestas().size(); j++) {
+                    if (stack.getPreguntas().get(i).getRespuestas().get(j).getId().equals(idRespuesta) && !stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername().equals(stack.getUsuarioConectado().getUsername())) {
+                        respuestaElegida = stack.getPreguntas().get(i).getRespuestas().get(j);
+                        return respuestaElegida;
+                    }
+                }
+            }
+            //Si se termina el ciclo for sin encontrar la Respuesta para el id ingresado:
+            System.out.println("No se encontro el id de respuesta ingresado");
+            System.out.println("Ingrese el id de la respuesta que desea aceptar:");
+            idRespuesta = input.nextInt();
+        }
+    }
+
+    //Vote para preguntas
+    public void vote(Pregunta pregunta,boolean voto){
+        Integer nuevaVotacion;
+        Integer reputacionUsuario;
+        Integer nuevaReputacion;
+        //Se agrega el voto a la pregunta
+        Integer votosActuales = pregunta.getVotos();
+        //Si el voto es positivo
+        if(voto){
+            nuevaVotacion = votosActuales+1;
+            pregunta.setVotos(nuevaVotacion);
+            //Se agregan 10 puntos a favor para la persona cuya pregunta fue votada a favor
+            reputacionUsuario = pregunta.getAutor().getReputacion();
+            nuevaReputacion = reputacionUsuario + 10;
+            pregunta.getAutor().setReputacion(nuevaReputacion);
+        //Si el voto fue negativo
+        } else {
+            nuevaVotacion = votosActuales-1;
+            pregunta.setVotos(nuevaVotacion);
+            //Se quitan 2 puntos de reputacion para la persona cuya pregunta fue votada en contra
+            reputacionUsuario = pregunta.getAutor().getReputacion();
+            nuevaReputacion = reputacionUsuario - 2;
+            pregunta.getAutor().setReputacion(nuevaReputacion);
+        }
+    }
+
+    //Vote para respuestas
+    public void vote(Respuesta respuesta,boolean voto){
+        Stack stack = getStack();
+        Integer nuevaVotacion;
+        Integer reputacionUsuario;
+        Integer nuevaReputacion;
+        //Se agrega el voto a la pregunta
+        Integer votosActuales = respuesta.getVotos();
+        //Si el voto es positivo
+        if(voto){
+            nuevaVotacion = votosActuales+1;
+            respuesta.setVotos(nuevaVotacion);
+            //Se agregan 10 puntos a favor para la persona cuya pregunta fue votada a favor
+            reputacionUsuario = respuesta.getAutor().getReputacion();
+            nuevaReputacion = reputacionUsuario + 10;
+            respuesta.getAutor().setReputacion(nuevaReputacion);
+            //Si el voto fue negativo
+        } else {
+            nuevaVotacion = votosActuales-1;
+            respuesta.setVotos(nuevaVotacion);
+            //Se quitan 2 puntos de reputacion para la persona cuya pregunta fue votada en contra
+            reputacionUsuario = respuesta.getAutor().getReputacion();
+            nuevaReputacion = reputacionUsuario - 2;
+            respuesta.getAutor().setReputacion(nuevaReputacion);
+            //Además se debe restar un punto al usuario que voto en contra de otra respuesta
+            Integer reputacionUsuarioConectado = stack.getUsuarioConectado().getReputacion();
+            Integer nuevaReputacionUsuarioConectado = reputacionUsuarioConectado - 1;
+            stack.getUsuarioConectado().setReputacion(nuevaReputacionUsuarioConectado);
+        }
+    }
 }

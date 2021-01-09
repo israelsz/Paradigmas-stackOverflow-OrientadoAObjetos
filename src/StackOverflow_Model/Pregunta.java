@@ -16,6 +16,7 @@ public class Pregunta {
     private String estado;
     private Integer recompensa;
     private Integer id;
+    private Integer votos;
 
     //Constructor
     public Pregunta(String titulo, String contenido, ArrayList<Etiqueta> etiquetas) {
@@ -27,6 +28,7 @@ public class Pregunta {
         this.etiquetas = etiquetas;
         idContador += 1;
         this.id = idContador;
+        this.votos = 0;
         //Para conseguir la fecha:
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -70,6 +72,10 @@ public class Pregunta {
         return id;
     }
 
+    public Integer getVotos() {
+        return votos;
+    }
+
     //Setters
     public void setRespuestas(ArrayList<Respuesta> respuestas) {
         this.respuestas = respuestas;
@@ -105,6 +111,10 @@ public class Pregunta {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setVotos(Integer votos) {
+        this.votos = votos;
     }
 
     //Metodos:

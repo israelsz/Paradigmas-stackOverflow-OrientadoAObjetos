@@ -138,7 +138,38 @@ public class Menu {
                             }
                             break;
                         case 5:
-                            System.out.println("Elegiste votar por una pregunta o respuesta");
+                            System.out.println("Elegió votar por una pregunta o respuesta");
+                            controlador.mostrarPreguntasYRespuestasNoPertenecientesAlUsuario();
+                            System.out.println("¿Desea elegir una pregunta o una respuesta para votar?");
+                            System.out.println("1. Pregunta");
+                            System.out.println("2. Respuesta");
+                            Integer eleccionPreguntaRespuesta = input.nextInt();
+                            //En caso de haber escogido una pregunta
+                            if(eleccionPreguntaRespuesta == 1){
+                                Pregunta preguntaEscogida = controlador.elegirPreguntaVote();
+                                System.out.println("Desea votar positiva o negativamente por la pregunta?");
+                                System.out.println("1. Positivamente");
+                                System.out.println("2. Negativamente");
+                                Integer tipoVoto = input.nextInt();
+                                if(tipoVoto == 1){
+                                    controlador.vote(preguntaEscogida,true);
+                                } else {
+                                    controlador.vote(preguntaEscogida, false);
+                                }
+                            //En caso de haber escogido una respuesta
+                            } else{
+                                Respuesta respuestaEscogida = controlador.elegirRespuestaVote();
+                                System.out.println("Desea votar positiva o negativamente por la respuesta?");
+                                System.out.println("1. Positivamente");
+                                System.out.println("2. Negativamente");
+                                Integer tipoVoto = input.nextInt();
+                                if(tipoVoto == 1){
+                                    controlador.vote(respuestaEscogida,true);
+                                } else {
+                                    controlador.vote(respuestaEscogida, false);
+                                }
+                            }
+                            controlador.printStack();
                             break;
                         case 6:
                             System.out.println("Sesion cerrada.");
