@@ -3,6 +3,11 @@ package StackOverflow_Model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase Respuesta perteneciente al modelo, contiene la estructura de la respuesta.
+ * @author Israel Arias Panez
+ */
+
 public class Respuesta {
     //Atributos
     private static Integer idContador = 0;
@@ -14,6 +19,11 @@ public class Respuesta {
     private Integer votos;
 
     //Constructor
+
+    /**
+     * Constructor de respuesta.
+     * @param contenido El contenido de la respuesta
+     */
     public Respuesta(String contenido) {
         this.contenido = contenido;
         this.estado = "pendiente";
@@ -71,6 +81,7 @@ public class Respuesta {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public void setVotos(Integer votos) {
         this.votos = votos;
     }

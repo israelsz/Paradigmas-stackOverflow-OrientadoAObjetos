@@ -3,6 +3,10 @@ package StackOverflow_Model;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Usuario perteneciente al modelo, contiene toda la estructura de un usuario.
+ * @author Israel Arias Panez
+ */
 public class Usuario {
     //Atributos
     private String username;
@@ -12,6 +16,12 @@ public class Usuario {
     private Integer reputacion;
 
     //Constructor
+
+    /**
+     * Constructor de Usuario.
+     * @param username El nombre de usuario
+     * @param password La contraseña
+     */
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
@@ -62,12 +72,20 @@ public class Usuario {
     }
     //Metodos
 
+    /**
+     * Metodo que permite agregar una pregunta inicialmente en la precarga del stack.
+     * @param pregunta Una pregunta.
+     */
     public void agregarPregunta(Pregunta pregunta){
         ArrayList<Pregunta> listaPreguntas = getPreguntasRealizadas();
         listaPreguntas.add(pregunta);
         setPreguntasRealizadas(listaPreguntas);
     }
 
+    /**
+     * Metodo que permite agregar una respuesta inicialmente en la precarga del stack.
+     * @param respuesta Una respuesta.
+     */
     public void agregarRespuesta(Respuesta respuesta){
         ArrayList<Respuesta> listaRespuestas = getRespuestasRealizadas();
         listaRespuestas.add(respuesta);

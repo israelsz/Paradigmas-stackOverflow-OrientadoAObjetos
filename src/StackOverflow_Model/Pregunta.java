@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase Pregunta, pertenciente al modelo, contiene todas la estructura de una pregunta.
+ * @author Israel Arias Panez
+ */
 public class Pregunta {
     //Atributos
     private static Integer idContador = 0;
@@ -19,6 +23,13 @@ public class Pregunta {
     private Integer votos;
 
     //Constructor
+
+    /**
+     * Constructor de una pregunta
+     * @param titulo titulo de una pregunta
+     * @param contenido contenido de una pregunta
+     * @param etiquetas la etiqueta de una pregunta
+     */
     public Pregunta(String titulo, String contenido, ArrayList<Etiqueta> etiquetas) {
         this.titulo = titulo;
         this.contenido = contenido;
@@ -118,6 +129,11 @@ public class Pregunta {
     }
 
     //Metodos:
+
+    /**
+     * Permite agregar una respuesta, se usa en la precarga del stack.
+     * @param respuesta Una respuesta
+     */
     public void agregarRespuesta(Respuesta respuesta){
         ArrayList<Respuesta> listaRespuestasAPregunta = getRespuestas();
         listaRespuestasAPregunta.add(respuesta);

@@ -4,6 +4,11 @@ import StackOverflow_Controller.Controlador;
 import StackOverflow_Model.Stack;
 import StackOverflow_View.Menu;
 
+/**
+ * Clase principal en la cual se inicialiazara el modelo, vista y controlador
+ * En esta clase se inicia el programa.
+ * @author Israel Arias Panez
+ */
 public class Main {
 
         public static void main(String[] args) {

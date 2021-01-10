@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+/**
+ * Clase correspondiente a la parte del Controlador.
+ * En esta clase estaran la gran mayoría de metodos que hacen la logica del sistema de foro.
+ * @author Israel Arias Panez
+ */
 public class Controlador {
     //Atributos
 
@@ -16,6 +20,11 @@ public class Controlador {
     private Stack stack;
 
     //Constructor
+
+    /**
+     * Crea el controlador, dandole como entrada el stack
+     * @param stack Una instancia de la clase stack.
+     */
     public Controlador(Stack stack) {
         this.stack = stack;
     }
@@ -27,21 +36,38 @@ public class Controlador {
 
     //Metodos:
 
+    /**
+     * El metodo printea el stack.
+     */
     public void printStack() {
         getStack().printearStack();
     }
 
+    /**
+     * Determina si hay un usuario conectado en el foro o no
+     * @return Retorna true o false
+     */
     public boolean isUsuarioConectado() {
         Stack stackActual = getStack();
         return stackActual.isConectado();
     }
 
+    /**
+     * Metodo que retorna al usuario conectado
+     * @return Retorna al usuario conectado
+     */
     public Usuario usuarioConectado() {
         Stack stackActual = getStack();
         return stackActual.getUsuarioConectado();
     }
 
     //Login:
+
+    /**
+     * Metodo que permite a un usuario loggearse a su cuenta del sistema de foro
+     * @param username El nombre de usuario.
+     * @param password La contraseña del usuario.
+     */
     public void login(String username, String password) {
         Stack stack = getStack();
         for (int i = 0; i < stack.getUsuarios().size(); i++) {
@@ -58,6 +84,12 @@ public class Controlador {
     }
 
     //Register:
+
+    /**
+     * Metodo que permite registrar a un nuevo usuario al sistema de foro
+     * @param username El nombre de usuario.
+     * @param password La contraseña del usuario.
+     */
     public void register(String username, String password) {
         Stack stack = getStack();
         for (int i = 0; i < stack.getUsuarios().size(); i++) {
@@ -72,12 +104,21 @@ public class Controlador {
     }
 
     //Logout:
+
+    /**
+     * Metodo que permite desconectar al usuario conectado del sistema de foro.
+     */
     public void logOut() {
         Stack stackActual = getStack();
         stackActual.setConectado(false);
     }
 
     // elegir etiquetas para una pregunta
+
+    /**
+     * Metodo que permite elegir o crear distintas etiquetas
+     * @return Retorna una Arraylist de etiquetas.
+     */
     public ArrayList<Etiqueta> elegirEtiquetas() {
         int opcion;
         int cantidadEtiquetas;
@@ -148,6 +189,13 @@ public class Controlador {
     }
 
     //Ask:
+
+    /**
+     * Metodo ask, permite crear y publicar una nueva pregunta en el sistema de foros
+     * @param titulo El titulo de la pregunta.
+     * @param contenido El contenido de la pregunta.
+     * @param etiquetas Las etiquetas que tiene la pregunta.
+     */
     public void ask(String titulo, String contenido, ArrayList<Etiqueta> etiquetas) {
         Stack stack = getStack();
         //Se crea la pregunta
@@ -162,6 +210,11 @@ public class Controlador {
     }
 
     //Elegir pregunta del stack
+
+    /**
+     *  Metodo que permite elegir una pregunta del stack
+     * @return una Pregunta
+     */
     public Pregunta elegirPregunta() {
         Stack stack = getStack();
         Scanner input = new Scanner(System.in);
@@ -192,6 +245,12 @@ public class Controlador {
     }
 
     //Answer:
+
+    /**
+     * Metodo que permite responder a una pregunta publicada en el stack
+     * @param preguntaAResponder La pregunta a responder.
+     * @param contenido El contenido o respuesta a la pregunta.
+     */
     public void answer(Pregunta preguntaAResponder, String contenido) {
         Stack stack = getStack();
         //Se crea la respuesta
@@ -206,6 +265,12 @@ public class Controlador {
     }
 
     //Reward
+
+    /**
+     * Metodo que permite ofrecer una recompensa a una pregunta, la cual se descuenta
+     * @param preguntaARecompensar La pregunta a la cual se le ofrece la recompensa.
+     * @param recompensa La recompensa ofrecida a la pregunta.
+     */
     public void reward(Pregunta preguntaARecompensar, Integer recompensa) {
         Stack stack = getStack();
         //En primer lugar se verificara que la pregunta se encuentre abierta
@@ -229,6 +294,11 @@ public class Controlador {
     }
 
     //Mostrar solo preguntas abiertas con las respuestas del usuario activo
+
+    /**
+     * Este metodo muestra por pantalla las preguntas y respuestas solo del usuario conectado actualmente.
+     * @return retorna un contador de preguntas, el cual se usará para saber si el usuario tiene o no preguntas en el stack que no se encuentren cerradas.
+     */
     public Integer mostrarPreguntasYRespuestasDelUsuario() {
         Stack stack = getStack();
         Integer contadorPreguntas = 0;
@@ -255,6 +325,11 @@ public class Controlador {
     }
 
     //Elegir pregunta para accept
+
+    /**
+     * Metodo que permite elegir una pregunta para el método accept.
+     * @return La pregunta elegida.
+     */
     public Pregunta elegirPreguntaAccept() {
         Stack stack = getStack();
         Scanner input = new Scanner(System.in);
@@ -279,6 +354,12 @@ public class Controlador {
         }
     }
     //Elegir respuesta para accept
+
+    /**
+     * Metodo que permite elegir una respuesta para el método accept.
+     * @param pregunta La pregunta de la cual se seleccionara la respuesta.
+     * @return Retorna una respuesta.
+     */
     public Respuesta elegirRespuestaAccept(Pregunta pregunta){
         Stack stack = getStack();
         Scanner input = new Scanner(System.in);
@@ -303,6 +384,12 @@ public class Controlador {
     }
 
     //Accept
+
+    /**
+     * Metodo que permite aceptar una respuesta a una pregunta del usuario conectado
+     * @param pregunta La pregunta a cerrar.
+     * @param respuesta La respuesta a aceptar.
+     */
     public void accept(Pregunta pregunta, Respuesta respuesta){
         Stack stack = getStack();
         //En primer lugar se cambiaran los estados, tanto de la pregunta como la respuesta
@@ -325,7 +412,9 @@ public class Controlador {
         System.out.println("Pregunta aceptada!");
     }
 
-
+    /**
+     * Muestra las preguntas y respuestas que NO pertenezcan al usuario conectado
+     */
     //Mostrar solo preguntas y respuestas que no sean del usuario
     public void mostrarPreguntasYRespuestasNoPertenecientesAlUsuario(){
         Stack stack = getStack();
@@ -355,6 +444,11 @@ public class Controlador {
     }
 
     //elegir pregunta para el método vote
+
+    /**
+     * Permite retornar una pregunta para el metodo vote.
+     * @return Una pregunta.
+     */
     public Pregunta elegirPreguntaVote() {
         Stack stack = getStack();
         Scanner input = new Scanner(System.in);
@@ -380,6 +474,11 @@ public class Controlador {
     }
 
     //Elegir respuesta para vote
+
+    /**
+     * Permite elegir una respuesta para el metodo vote.
+     * @return Una respuesta.
+     */
     public Respuesta elegirRespuestaVote() {
         Stack stack = getStack();
         Scanner input = new Scanner(System.in);
@@ -405,6 +504,12 @@ public class Controlador {
     }
 
     //Vote para preguntas
+
+    /**
+     * Metodo que permite votar positiva o negativamente por una pregunta.
+     * @param pregunta Una pregunta.
+     * @param voto El voto, el cual puede ser positivo o negativo.
+     */
     public void vote(Pregunta pregunta,boolean voto){
         Integer nuevaVotacion;
         Integer reputacionUsuario;
@@ -431,6 +536,12 @@ public class Controlador {
     }
 
     //Vote para respuestas
+
+    /**
+     * Metodo que permite votar positiva o negativamente por una respuesta.
+     * @param respuesta Una respuesta.
+     * @param voto Un voto, puede ser positivo o negativo.
+     */
     public void vote(Respuesta respuesta,boolean voto){
         Stack stack = getStack();
         Integer nuevaVotacion;

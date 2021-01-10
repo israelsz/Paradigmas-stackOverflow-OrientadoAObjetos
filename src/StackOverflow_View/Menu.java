@@ -8,23 +8,38 @@ import StackOverflow_Model.Respuesta;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+ * Clase correspondiente a la parte del Visor.
+ * Corresponde al menu principal del programa
+ * Mediante el cual el usuario interactuara con el programa.
+ * @author Israel Arias Panez
+ */
 public class Menu {
     //Atributos
     //Como atributo el menu tendra al controlador, para poder acceder a sus metodos
     private Controlador controller;
 
     //Constructor
+
+    /**
+     * Crea un menu, usando el controlador.
+     * @param controller Instancia del controlador.
+     */
     public Menu(Controlador controller){
         this.controller = controller;
     }
 
     //Getter
+
     public Controlador getController() {
         return controller;
     }
 
     //Metodos
+
+    /**
+     * Inicia el menú, entonces el programa inicia su ejecución.
+     */
     public void iniciarMenu(){
         Scanner input = new Scanner(System.in);
         boolean salirMenu = false;
@@ -83,8 +98,9 @@ public class Menu {
                 System.out.println("3. Dar recompensa");
                 System.out.println("4. Aceptar respuesta");
                 System.out.println("5. Votar a una pregunta o respuesta");
-                System.out.println("6. Cerrar sesión");
-                System.out.println("7. Salir del programa");
+                System.out.println("6. Mostrar todas las preguntas, respuestas y usuarios del foro por pantalla");
+                System.out.println("7. Cerrar sesión");
+                System.out.println("8. Salir del programa");
 
                 try {
                     System.out.println("Introduzca su opción: ");
@@ -169,14 +185,16 @@ public class Menu {
                                     controlador.vote(respuestaEscogida, false);
                                 }
                             }
-                            controlador.printStack();
                             break;
                         case 6:
+                            controlador.printStack();
+                            break;
+                        case 7:
                             System.out.println("Sesion cerrada.");
                             //Logout
                             controlador.logOut();
                             break;
-                        case 7:
+                        case 8:
                             System.out.println("Elegiste salir del programa");
                             salirMenu = true;
                             break;

@@ -2,6 +2,10 @@ package StackOverflow_Model;
 
 import java.util.ArrayList;
 
+/**
+ * Clase perteneciente al modelo, en este caso contiene la estructura del stack.
+ * @author Israel Arias Panez
+ */
 public class Stack {
 
     //Atributos
@@ -13,6 +17,11 @@ public class Stack {
 
 
     //Constructor
+
+    /**
+     * Constructor de stack, no requiere parametros.
+     * Se construye la precarga del stack, cargandole usuarios, preguntas y respuestas.
+     */
     public Stack() {
         this.preguntas = new ArrayList<>();
         this.usuarios = new ArrayList<>();
@@ -210,6 +219,10 @@ public class Stack {
     //Metodos:
 
     //Muestra el stack por pantalla.
+
+    /**
+     * Método que permite printear interactivamente toda la información del foro
+     */
     public void printearStack(){
 
         ArrayList<Pregunta> listaPreguntas = getPreguntas();
