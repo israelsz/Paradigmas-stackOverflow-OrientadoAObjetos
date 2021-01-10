@@ -22,19 +22,37 @@ public class Etiqueta {
     }
 
     //Getters
+
+    /**
+     *
+     * @return El nombre de la etiqueta.
+     */
     public String getNombreEtiqueta() {
         return nombreEtiqueta;
     }
 
+    /**
+     *
+     * @return La descripcion de la etiqueta.
+     */
     public String getDescripcionEtiqueta() {
         return descripcionEtiqueta;
     }
 
     //Setters
+
+    /**
+     *
+     * @param nombreEtiqueta El nuevo nombre para la etiqueta.
+     */
     public void setNombreEtiqueta(String nombreEtiqueta) {
         this.nombreEtiqueta = nombreEtiqueta;
     }
 
+    /**
+     *
+     * @param descripcionEtiqueta La nueva descripcion para la etiqueta.
+     */
     public void setDescripcionEtiqueta(String descripcionEtiqueta) {
         this.descripcionEtiqueta = descripcionEtiqueta;
     }

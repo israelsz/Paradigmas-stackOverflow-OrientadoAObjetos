@@ -30,6 +30,11 @@ public class Controlador {
     }
 
     //Getter
+
+    /**
+     *
+     * @return el stack
+     */
     public Stack getStack() {
         return stack;
     }
@@ -220,10 +225,10 @@ public class Controlador {
         Scanner input = new Scanner(System.in);
         System.out.println("Las preguntas disponibles en el stack son: ");
         for (int i = 0; i < stack.getPreguntas().size(); i++) {
-            System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
+            System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + "   Id: " + stack.getPreguntas().get(i).getId());
             System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
-            System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
-            System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "\n");
+            System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + "   Estado: " + stack.getPreguntas().get(i).getEstado() + "   Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
+            System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "   Votos: " + stack.getPreguntas().get(i).getVotos() + "\n");
         }
         System.out.println("Ingrese el id de la pregunta que desea escoger:");
         Integer idPregunta = input.nextInt();
@@ -305,18 +310,18 @@ public class Controlador {
         for (int i = 0; i < stack.getPreguntas().size(); i++) {
             //Si la respuesta pertenece al usuario y además no se encuentra cerrada
             if (stack.getUsuarioConectado().getUsername().equals(stack.getPreguntas().get(i).getAutor().getUsername()) && stack.getPreguntas().get(i).getEstado().equals("abierta")) {
-                System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
+                System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + "    Id: " + stack.getPreguntas().get(i).getId());
                 System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
-                System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
-                System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "\n");
+                System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + "    Estado: " + stack.getPreguntas().get(i).getEstado() + "    Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
+                System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "   Votos: " + stack.getPreguntas().get(i).getVotos() + "\n");
                 for (int j = 0; j < stack.getPreguntas().get(i).getEtiquetas().size(); j++) {
                     System.out.println("Etiquetas: " + stack.getPreguntas().get(i).getEtiquetas().get(j).getNombreEtiqueta());
                 }
                 System.out.println("\nRespuestas a la pregunta: ");
                 for (int j = 0; j < stack.getPreguntas().get(i).getRespuestas().size(); j++) {
                     System.out.println("Respuesta: " + stack.getPreguntas().get(i).getRespuestas().get(j).getContenido());
-                    System.out.println(" Id: " + stack.getPreguntas().get(i).getRespuestas().get(j).getId() + " Fecha: " + stack.getPreguntas().get(i).getRespuestas().get(j).getFecha());
-                    System.out.println(" Autor: " + stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername() + " Estado: " + stack.getPreguntas().get(i).getRespuestas().get(j).getEstado() + "\n");
+                    System.out.println("Id: " + stack.getPreguntas().get(i).getRespuestas().get(j).getId() + "    Fecha: " + stack.getPreguntas().get(i).getRespuestas().get(j).getFecha());
+                    System.out.println("Autor: " + stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername() + "    Estado: " + stack.getPreguntas().get(i).getRespuestas().get(j).getEstado() + "    Votos: " + stack.getPreguntas().get(i).getRespuestas().get(j).getVotos() + "\n");
                 }
                 contadorPreguntas = contadorPreguntas+1;
             }
@@ -421,10 +426,10 @@ public class Controlador {
         for (int i = 0; i < stack.getPreguntas().size(); i++) {
             //Si la pregunta NO fue hecha por el usuario actualmente conectado
             if (!stack.getUsuarioConectado().getUsername().equals(stack.getPreguntas().get(i).getAutor().getUsername())) {
-                System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + " Id: " + stack.getPreguntas().get(i).getId());
+                System.out.println("Pregunta: " + stack.getPreguntas().get(i).getTitulo() + "    Id: " + stack.getPreguntas().get(i).getId());
                 System.out.println("Contenido: " + stack.getPreguntas().get(i).getContenido());
-                System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + " Estado: " + stack.getPreguntas().get(i).getEstado() + " Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
-                System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "\n");
+                System.out.println("Fecha :" + stack.getPreguntas().get(i).getFecha() + "    Estado: " + stack.getPreguntas().get(i).getEstado() + "    Autor: " + stack.getPreguntas().get(i).getAutor().getUsername());
+                System.out.println("Recompensa: " + stack.getPreguntas().get(i).getRecompensa() + "    Votos: " + stack.getPreguntas().get(i).getVotos());
                 for (int j = 0; j < stack.getPreguntas().get(i).getEtiquetas().size(); j++) {
                     System.out.println("Etiquetas: " + stack.getPreguntas().get(i).getEtiquetas().get(j).getNombreEtiqueta());
                 }
@@ -436,8 +441,8 @@ public class Controlador {
                     //En caso que el autor de la respuesta no sea el usuario conectado
                     if(!stack.getUsuarioConectado().getUsername().equals(stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername())){
                         System.out.println("Respuesta: " + stack.getPreguntas().get(i).getRespuestas().get(j).getContenido());
-                        System.out.println(" Id: " + stack.getPreguntas().get(i).getRespuestas().get(j).getId() + " Fecha: " + stack.getPreguntas().get(i).getRespuestas().get(j).getFecha());
-                        System.out.println(" Autor: " + stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername() + " Estado: " + stack.getPreguntas().get(i).getRespuestas().get(j).getEstado() + "\n");
+                        System.out.println("Id: " + stack.getPreguntas().get(i).getRespuestas().get(j).getId() + "    Fecha: " + stack.getPreguntas().get(i).getRespuestas().get(j).getFecha());
+                        System.out.println("Autor: " + stack.getPreguntas().get(i).getRespuestas().get(j).getAutor().getUsername() + "    Estado: " + stack.getPreguntas().get(i).getRespuestas().get(j).getEstado() + "    Votos: " + stack.getPreguntas().get(i).getRespuestas().get(j).getVotos() + "\n");
                     }
                 }
         }

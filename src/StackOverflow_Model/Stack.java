@@ -178,40 +178,76 @@ public class Stack {
 
     //Getters
 
+    /**
+     *
+     * @return ArrayList con preguntas
+     */
     public ArrayList<Pregunta> getPreguntas() {
         return preguntas;
     }
 
+    /**
+     *
+     * @return ArrayList con usuarios
+     */
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
+    /**
+     *
+     * @return el Usuario conectado
+     */
     public Usuario getUsuarioConectado() {
         return usuarioConectado;
     }
 
+    /**
+     *
+     * @return true si esta conectado, false si no hay nadie conectado.
+     */
     public boolean isConectado() {
         return conectado;
     }
 
+    /**
+     *
+     * @return ArrayList con etiquetas
+     */
     public ArrayList<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
 
     //Setters
 
+    /**
+     *
+     * @param preguntas ArrayList con preguntas
+     */
     public void setPreguntas(ArrayList<Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
+    /**
+     *
+     * @param usuarios ArrayList con usuarios
+     */
     public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
+    /**
+     *
+     * @param usuarioConectado El usuario que ahora se encuentra conectado
+     */
     public void setUsuarioConectado(Usuario usuarioConectado) {
         this.usuarioConectado = usuarioConectado;
     }
 
+    /**
+     *
+     * @param conectado true o false dependiendo si se encuentra conectado un usuario o no
+     */
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
     }

@@ -47,83 +47,165 @@ public class Pregunta {
         }
 
     //Getters
+
+    /**
+     *
+     * @return ArrayList con respuestas
+     */
     public ArrayList<Respuesta> getRespuestas() {
         return respuestas;
     }
 
+    /**
+     *
+     * @return ArrayList con etiquetas
+     */
     public ArrayList<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
 
+    /**
+     *
+     * @return El titulo de la pregunta
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     *
+     * @return El contenido de una pregunta
+     */
     public String getContenido() {
         return contenido;
     }
 
+    /**
+     *
+     * @return La fecha de la pregunta
+     */
     public String getFecha() {
         return fecha;
     }
 
+    /**
+     *
+     * @return El autor de la pregunta
+     */
     public Usuario getAutor() {
         return autor;
     }
 
+    /**
+     *
+     * @return El estado de la pregunta, por ejemplo abierto o cerrado
+     */
     public String getEstado() {
         return estado;
     }
 
+    /**
+     *
+     * @return La recompensa de la pregunta
+     */
     public Integer getRecompensa() {
         return recompensa;
     }
 
+    /**
+     *
+     * @return el id de la pregunta
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return los votos que tiene la pregunta
+     */
     public Integer getVotos() {
         return votos;
     }
 
     //Setters
+
+    /**
+     *
+     * @param respuestas ArrayList con respuestas
+     */
     public void setRespuestas(ArrayList<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
 
+    /**
+     *
+     * @param etiquetas ArrayList con etiquetas
+     */
     public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
 
+    /**
+     *
+     * @param titulo titulo de la pregunta
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     *
+     * @param contenido Contenido de la pregunta
+     */
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
+    /**
+     *
+     * @param fecha Fecha de la pregunta
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     *
+     * @param autor Autor de la pregunta
+     */
     public void setAutor(Usuario autor) {
         this.autor = autor;
     }
 
+    /**
+     *
+     * @param estado Estado de la pregunta
+     */
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
+    /**
+     *
+     * @param recompensa Recompensa a asignar a la pregunta
+     */
     public void setRecompensa(Integer recompensa) {
         this.recompensa = recompensa;
     }
 
+    /**
+     *
+     * @param id id de la pregunta
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param votos nuevos votos para la pregunta
+     */
     public void setVotos(Integer votos) {
         this.votos = votos;
     }

@@ -30,43 +30,85 @@ public class Usuario {
         this.reputacion = 50;
     }
     //Getters
+
+    /**
+     *
+     * @return El nombre de usuario
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @return La contraseña
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @return La reputacion
+     */
     public Integer getReputacion() {
         return reputacion;
     }
 
+    /**
+     *
+     * @return ArrayList con preguntas realizadas.
+     */
     public ArrayList<Pregunta> getPreguntasRealizadas() {
         return preguntasRealizadas;
     }
 
+    /**
+     *
+     * @return ArrayLisy con respuestas realizadas.
+     */
     public ArrayList<Respuesta> getRespuestasRealizadas() {
         return respuestasRealizadas;
     }
 
     //Setters
+
+    /**
+     *
+     * @param username el nombre de usuario
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @param password La contraseña
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @param reputacion la nueva reputacion del usuario
+     */
     public void setReputacion(Integer reputacion) {
         this.reputacion = reputacion;
     }
 
+    /**
+     *
+     * @param preguntasRealizadas ArrayList con preguntas realizadas
+     */
     public void setPreguntasRealizadas(ArrayList<Pregunta> preguntasRealizadas) {
         this.preguntasRealizadas = preguntasRealizadas;
     }
 
+    /**
+     *
+     * @param respuestasRealizadas ArrayList con respuestas realizadas
+     */
     public void setRespuestasRealizadas(ArrayList<Respuesta> respuestasRealizadas) {
         this.respuestasRealizadas = respuestasRealizadas;
     }
